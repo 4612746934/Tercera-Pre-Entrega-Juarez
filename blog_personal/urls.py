@@ -16,8 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path,include
+from blog_personal.views import saludar_con_html
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('blog/', include('mi_blog.urls'))
-]
+    path('blog/', include('mi_blog.urls')),
+    path("", saludar_con_html, name="inicio"),
+    ]

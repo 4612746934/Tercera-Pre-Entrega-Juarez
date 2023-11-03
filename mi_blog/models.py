@@ -5,10 +5,11 @@ from django.db import models
 class Persona(models.Model):
     nombre = models.CharField(max_length=100)
     fecha_nacimiento = models.DateField()
-    imagen = models.ImageField(upload_to='imagenes/')
+    apellido = models.CharField(max_length=256)
 
 class Familiares(Persona):
     parentesco = models.CharField(max_length=50)
+    
 
 class Amigos(Persona):
     nivel_amistad = models.PositiveIntegerField()
