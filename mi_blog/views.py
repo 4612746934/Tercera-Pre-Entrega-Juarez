@@ -9,6 +9,7 @@ def lista_familiares(request):
     familiares = Familiares.objects.all()
     return render(request, 'mi_blog/lista_familiares.html', {'familiares': familiares})
 
+
 def lista_amigos(request):
     amigos = Amigos.objects.all()
     return render(request, 'mi_blog/lista_amigos.html', {'amigos': amigos})
