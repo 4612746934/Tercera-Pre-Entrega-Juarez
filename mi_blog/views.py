@@ -22,7 +22,7 @@ def crear_familiar(request):
         form = FamiliaresForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('lista_familiares')
+            return redirect('mi_blog:crear_familiar')
     else:
         form = FamiliaresForm()
     return render(request, 'mi_blog/crear_familiar.html', {'form': form})
@@ -32,7 +32,7 @@ def crear_amigo(request):
         form = AmigosForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('lista_amigos')
+            return redirect('mi_blog:lista_amigos')
     else:
         form = AmigosForm()
     return render(request, 'mi_blog/crear_amigo.html', {'form': form})
@@ -42,7 +42,7 @@ def crear_viaje(request):
         form = ViajesForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('lista_viajes')
+            return redirect('mi_blog:lista_viajes')
     else:
         form = ViajesForm()
     return render(request, 'mi_blog/crear_viaje.html', {'form': form})

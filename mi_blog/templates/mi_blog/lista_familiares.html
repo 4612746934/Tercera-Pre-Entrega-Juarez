@@ -1,14 +1,13 @@
 {% extends "base.html" %}
 
-{% block titulo %}
-<title>Coderhouse 47780 - Mi Blog</title>
-{% endblock titulo %}
 
 {% block contenido %}
-<h1 style="color:blue;">
-  Bienvenidos, les saluda Arian
-</h1>
+<h1>Crear familiar</h1>
 
-<h3>Lista de Familiares:</h3>
+<form action="{% url "mi_blog:crear_familiar" %}" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <button type="submit">Guardar familiar</button>
+</form>
 
 {% endblock contenido %}
