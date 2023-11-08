@@ -3,7 +3,7 @@ from django.shortcuts import render
 # Create your views here.
 from django.shortcuts import render, redirect
 from .models import Familiares, Amigos, Viajes
-from .forms import FamiliaresForm, AmigosForm, ViajesForm
+from .forms import FamiliaresForm, AmigosForm, ViajesForm,BusquedaForm
 
 def lista_familiares(request):
     familiares = Familiares.objects.all()
@@ -60,3 +60,7 @@ def buscar(request):
             'resultados_amigos': resultados_amigos,
             'resultados_viajes': resultados_viajes
         })
+    else:
+        form = BusquedaForm()
+        return render(request,'mi_blog/buscar.html',{'form':form})
+    
