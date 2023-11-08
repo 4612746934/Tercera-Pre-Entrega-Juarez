@@ -11,11 +11,23 @@
 </h1>
   
 <h3>Familiares guardados:</h3>
-<ul>
-{% for familiares in familiares %}
-    <li>
-        {{ familiares.apellido }}, {{ familiares.nombre }}, {{familiares.parentesco}}
-    </li>
-    {% endfor %}
-</ul>
+<table class="table">
+    <tbody>
+      <tr>
+        <th>ID</th>
+        <th>Apellido</th>
+        <th>Nombre</th>
+        <th>Parentezco</th>
+        <th></th>
+      </tr>
+      {% for familiares in familiares %}
+      <tr>
+        <td>{{ familiares.id }}</td>
+        <td>{{ familiares.apellido }}</td>
+        <td>{{ familiares.nombre }}</td>
+        <td>{{ familiares.parentesco }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 {% endblock contenido %}

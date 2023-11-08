@@ -11,11 +11,23 @@
 </h1>
   
 <h3>Viajes Reservados:</h3>
-<ul>
-{% for viajes in viajes %}
-    <li>
-        {{ viajes.destino }}, {{ viajes.fecha_viaje }}
-    </li>
-    {% endfor %}
-</ul>
+<table class="table">
+    <tbody>
+      <tr>
+        <th>ID</th>
+        <th>Destino</th>
+        <th>Fecha de viaje</th>
+        <th></th>
+      </tr>
+      {% for viajes in viajes %}
+      <tr>
+        <td>{{ viajes.id }}</td>
+        <td>{{ viajes.destino }}</td>
+        <td>{{ viajes.fecha_viaje }}</td>
+        <td></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
 {% endblock contenido %}
