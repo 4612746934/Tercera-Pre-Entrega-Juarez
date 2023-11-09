@@ -96,101 +96,58 @@ def eliminar_viaje(request, id):
         return redirect(url_exitosa)
 
 
-def editar_familiar(request, id):
-    familiares = Familiares.objects.get(id=id)
-    if request.method == "POST":
-        # Actualizacion de datos
-        form = FamiliaresForm(request.POST)
-
-        if form.is_valid():
-            data = form.cleaned_data
-            # modificamos el objeto en memoria RAM
-            familiares.apellido = data['apellido']
-            familiares.nombre = data['nombre']
-            familiares.fecha_nacimiento = data['fecha_nacimiento']
-            familiares.parentesco = data['parentesco']
-            # Los cambios se guardan en la Base de datos
-            familiares.save()
-
-            url_exitosa = reverse('mi_blog:lista_familiares')
-            return redirect(url_exitosa)
-    else:  # GET
-        # Descargar formulario con data actual
-        inicial = {
-            'apellido': familiares.apellido,
-            'nombre': familiares.nombre,
-            'fecha_nacimiento': familiares.fecha_nacimiento,
-            'parentesco': familiares.parentesco,
-        }
-        form = FamiliaresForm(initial=inicial)
-    return render(
-        request=request,
-        template_name='mi_blog/crear_familiar.html',
-        context={'form': form},
-    )
 
 def editar_viaje(request, id):
-    viajes = Viajes.objects.get(id=id)
+    viaje = Viajes.objects.get(id=id)
+
     if request.method == "POST":
-        # Actualizacion de datos
-        form = ViajesForm(request.POST)
+        form = ViajesForm(request.POST, instance=viaje)
 
         if form.is_valid():
-            data = form.cleaned_data
-            # modificamos el objeto en memoria RAM
-            viajes.destino = data['destino']
-            viajes.fecha_viaje = data['fecha_viaje']
-            viajes.duracion = data['duracion']
-            viajes.viajeros = data['viajeros']
-
-            # Los cambios se guardan en la Base de datos
-            viajes.save()
-
+            form.save()
             url_exitosa = reverse('mi_blog:lista_viajes')
             return redirect(url_exitosa)
-    else:  # GET
-        # Descargar formulario con data actual
-        inicial = {
-            'destino': viajes.destino,
-            'fecha_viaje': viajes.fecha_viaje,
-            'duracion': viajes.duracion,
-            'viajeros': viajes.viajeros,
-        }
-        form = ViajesForm(initial=inicial)
+    else:  
+        form = ViajesForm(instance=viaje)
+
     return render(
         request=request,
         template_name='mi_blog/crear_viaje.html',
         context={'form': form},
     )
 
+def editar_familiar(request, id):
+    familiar = Familiares.objects.get(id=id)
 
-def editar_amigo(request, id):
-    amigos = Amigos.objects.get(id=id)
     if request.method == "POST":
-        # Actualizacion de datos
-        form = AmigosForm(request.POST)
+        form = FamiliaresForm(request.POST, instance=familiar)
 
         if form.is_valid():
-            data = form.cleaned_data
-            # modificamos el objeto en memoria RAM
-            amigos.apellido = data['apellido']
-            amigos.nombre = data['nombre']
-            amigos.fecha_nacimiento = data['fecha_nacimiento']
-            amigos.nivel_amistad = data['nivel_amistad']
-            # Los cambios se guardan en la Base de datos
-            amigos.save()
+            form.save()
+            url_exitosa = reverse('mi_blog:lista_familiares')
+            return redirect(url_exitosa)
+    else:  
+        form = FamiliaresForm(instance=familiar)
 
+    return render(
+        request=request,
+        template_name='mi_blog/crear_familiar.html',
+        context={'form': form},
+    )
+
+def editar_amigo(request, id):
+    amigo = Amigos.objects.get(id=id)
+
+    if request.method == "POST":
+        form = AmigosForm(request.POST, instance=amigo)
+
+        if form.is_valid():
+            form.save()
             url_exitosa = reverse('mi_blog:lista_amigos')
             return redirect(url_exitosa)
-    else:  # GET
-        # Descargar formulario con data actual
-        inicial = {
-            'apellido': amigos.apellido,
-            'nombre': amigos.nombre,
-            'fecha_nacimiento': amigos.fecha_nacimiento,
-            'nivel_amistad' : amigos.nivel_amistad
-        }
-        form = AmigosForm(initial=inicial)
+    else:  
+        form = AmigosForm(instance=amigo)
+
     return render(
         request=request,
         template_name='mi_blog/crear_amigo.html',
