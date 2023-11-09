@@ -8,7 +8,7 @@ class Persona(models.Model):
     apellido = models.CharField(max_length=256)
 
     def __str__(self):
-        return f"{self.apellido} ({self.nombre})"
+        return f"{self.apellido} ,({self.nombre}), {self.fecha_nacimiento}"
 
 class Familiares(Persona):
     parentesco = models.CharField(max_length=50)
@@ -30,4 +30,4 @@ class Viajes(models.Model):
     viajeros = models.ManyToManyField(Persona)
 
     def __str__(self):
-        return f"{self.destino}, {self.fecha_viaje}, {self.viajeros}"
+        return f"{self.destino}, {self.fecha_viaje}, {self.viajeros},{self.duracion}"
