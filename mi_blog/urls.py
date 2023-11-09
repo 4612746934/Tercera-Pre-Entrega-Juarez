@@ -1,6 +1,6 @@
 from django.urls import path
 from . import views 
-from mi_blog.views import (eliminar_familiar,eliminar_amigo, eliminar_viaje,editar_familiar,editar_viaje,editar_amigo)
+from mi_blog.views import (eliminar_familiar,eliminar_amigo, eliminar_viaje)
 
 app_name = 'mi_blog'
 
@@ -15,7 +15,4 @@ urlpatterns = [
     path("eliminar_familiar/<int:id>/", eliminar_familiar, name="eliminar_familiar"),
     path("eliminar_amigo/<int:id>/", eliminar_amigo, name="eliminar_amigo"),
     path("eliminar_viaje/<int:id>/", eliminar_viaje, name="eliminar_viaje"),
-    path("editar_familiar/<int:id>/", editar_familiar, name="editar_familiar"),
-    path("editar_viaje/<int:id>/", editar_viaje, name="editar_viaje"),
-    path("editar_amigo/<int:id>/", editar_amigo, name="editar_amigo"),
 ]
